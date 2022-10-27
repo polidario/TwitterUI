@@ -1,9 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
+import Connection from './components/connection';
 
 function App() {
   return (
     <div className="App">
+      <Connection />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
