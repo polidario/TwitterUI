@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-import Connection from './components/connection';
+import './css/App.css';
+import Connection from './components/Connection';
+import Header from './components/Header';
+import Main from './components/MainContent';
 
 function App() {
   return (
     <div className="App">
-      <Connection />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+      <div className="base container mx-auto flex row">
+        <h2 aria-level="2" role="heading">
+        </h2>
+        <Header/>
+        <Main />
+      </div>
     </div>
   );
 }

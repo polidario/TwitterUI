@@ -1,18 +1,22 @@
-import React from 'react';
-import { ethers } from "ethers";
+import { ethers } from 'ethers';
 
-class Connection extends React.Component {
+function Connect() {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
 
-    render() {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const request = provider.send("eth_requestAccounts", []);
-        console.log(signer);
-
-        return(
-            <></>
-        )
+    if(window.ethereum._state.accounts.length > 0 ) {
+        console.log(window.ethereum._state);
+        return;
     }
+
+    if(window.ethereum._state.account == undefined) {
+        const request = provider.send("eth_requestAccounts", []);   
+    } else {
+        console.log("You are already connected", window.ethereum._state.account);
+    }
+
+    console.log(window.ethereum._state)
+    //const request = provider.send("eth_requestAccounts", []);   
 }
 
-export default Connection;
+export default Connect;
