@@ -1,7 +1,9 @@
+import React from 'react';
 import './css/App.css';
-import Connection from './components/Connection';
+
 import Header from './components/Header';
 import Main from './components/MainContent';
+import Sample from './components/Sample';
 
 function App() {
   return (
@@ -10,6 +12,7 @@ function App() {
       <div className="base container mx-auto flex row">
         <h2 aria-level="2" role="heading">
         </h2>
+        <Sample />
         <Header/>
         <Main />
       </div>

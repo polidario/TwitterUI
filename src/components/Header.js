@@ -1,26 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faKiwiBird, faHouseCrack } from '@fortawesome/free-solid-svg-icons';
 import Connect from './Connection';
+import CheckEthConnection from './CheckEthereumConnection';
 
 class Header extends React.Component {
     
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
 
-        this.state = {isConnected: false}
-        this.connectToMetamask = this.handleClick.bind(this);
+        this.accounts = window.ethereum._state.accounts;
+        this.isConnected = false;
 
-        
+        if(this.accounts) {
+            if(this.accounts.length > 0)
+                this.isConnected = true;
+            else
+                this.isConnected = false;
+        }
+
+        console.log(this.isConnected, this.accounts);
     }
 
-    handleClick(x = false) {
+    handleClick(status) {
         //console.log("Connect To MetaMask");
-
-        if(x)
-            Connect();
-        else
-            console.log("Cannot initiate");
+        CheckEthConnection();
+        
+        if(!status) Connect();
     }
 
     render() {
@@ -49,7 +55,7 @@ class Header extends React.Component {
                                 </nav>
 
                                 <div>
-                                    <button onClick={this.handleClick} className="bg-blue-400 w-full mt-5 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
+                                    <button onClick={ () => this.handleClick(this.isConnected) } className="bg-blue-400 w-full mt-5 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
                                         Connect to MetaMask
                                     </button>
                                 </div>
