@@ -18,14 +18,12 @@ class Header extends React.Component {
             else
                 this.isConnected = false;
         }
-
-        console.log(this.isConnected, this.accounts);
     }
 
     handleClick(status) {
         //console.log("Connect To MetaMask");
         CheckEthConnection();
-        
+
         if(!status) Connect();
     }
 

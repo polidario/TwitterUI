@@ -1,6 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWarning } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
+import { sendTweet } from './TwitterFunction';
+
 
 class TweetTextbox extends React.Component {
     render() {
@@ -11,7 +13,7 @@ class TweetTextbox extends React.Component {
                         <img className="inline-block h-10 w-10 rounded-full" src="https://picsum.photos/id/1/200/300" alt="" />
                     </div>
                     <div className="flex-1 px-2 pt-2 mt-2">
-                        <textarea className=" bg-transparent text-gray-400 font-medium text-lg w-full" rows="2" cols="50" placeholder="What's happening?"></textarea>
+                        <textarea id="tweetContentTB" className=" bg-transparent text-gray-400 font-medium text-lg w-full" rows="2" cols="50" placeholder="What's happening?"></textarea>
                     </div>                    
                 </div>
                 
@@ -31,7 +33,7 @@ class TweetTextbox extends React.Component {
                     </div>
 
                     <div className="flex-1">
-                        <button className="bg-blue-400 mt-5 hover:bg-blue-600 text-white font-bold py-2 px-8 rounded-full mr-8 float-right">
+                        <button onClick={() => { sendTweet(document.getElementById("tweetContentTB").value) }} className="bg-blue-400 mt-5 hover:bg-blue-600 text-white font-bold py-2 px-8 rounded-full mr-8 float-right">
                             Tweet
                         </button>
                     </div>

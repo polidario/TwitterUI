@@ -3,6 +3,12 @@ import { faPencilAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Tweet extends React.Component {
+    constructor(props) {
+        super(props);
+
+        console.log("Here is the data", props.data);
+    }
+    
     render() {
         return (
             <>
