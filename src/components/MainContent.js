@@ -7,18 +7,6 @@ import { fetchTweets } from './TwitterFunction';
 class Main extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            array: ''
-        }
-
-        
-    }
-
-    componentDidMount() {
-        this.state.array = (fetchTweets().then(response => 
-            this.setState({ array: response })
-        ));
     }
 
 
@@ -33,10 +21,6 @@ class Main extends React.Component {
                         <TweetTextbox />
 
                         <hr className="border-gray-600 mt-4" />
-
-                        {
-                            console.log(this.state.data)
-                        }
                     </div>
             </main>
     }
