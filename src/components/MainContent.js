@@ -7,6 +7,11 @@ import { fetchTweets } from './TwitterFunction';
 class Main extends React.Component {
     constructor(props) {
         super(props);
+
+        this.tweets = "";
+        this.tweets = fetchTweets().then((response) => {
+            return JSON.stringify(response);
+        });
     }
 
 
@@ -21,6 +26,8 @@ class Main extends React.Component {
                         <TweetTextbox />
 
                         <hr className="border-gray-600 mt-4" />
+
+                        <Tweet data={this.tweets} />
                     </div>
             </main>
     }

@@ -9,14 +9,18 @@ class Header extends React.Component {
     constructor() {
         super();
 
-        this.accounts = window.ethereum._state.accounts;
-        this.isConnected = false;
+        const { ethereum } = window;
 
-        if(this.accounts) {
-            if(this.accounts.length > 0)
-                this.isConnected = true;
-            else
-                this.isConnected = false;
+        if(ethereum) {
+            this.accounts = window.ethereum._state.accounts;
+            this.isConnected = false;
+
+            if(this.accounts) {
+                if(this.accounts.length > 0)
+                    this.isConnected = true;
+                else
+                    this.isConnected = false;
+            }
         }
     }
 
