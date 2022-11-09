@@ -754,6 +754,14 @@ body {
   min-width: 32px;
 }
 
+.max-w-\[100px\] {
+  max-width: 100px;
+}
+
+.max-w-\[178px\] {
+  max-width: 178px;
+}
+
 .flex-none {
   flex: none;
 }
@@ -798,6 +806,12 @@ body {
 
 .overflow-y-auto {
   overflow-y: auto;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .break-normal {

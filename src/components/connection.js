@@ -8,9 +8,8 @@ function Connect() {
 
     if( ethereum ) {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
 
-        if(window.ethereum._state.account == undefined) {
+        if(window.ethereum._state.account === undefined) {
             const request = provider.send("eth_requestAccounts", []); 
             
             console.log(request);

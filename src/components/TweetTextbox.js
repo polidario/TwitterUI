@@ -26,7 +26,7 @@ class TweetTextbox extends React.Component {
                             <div className="text-center px-1 py-1 m-2">
                                 <span className="mt-1 flex items-center text-blue-400 px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-blue-400/10 hover:text-blue-400">
                                     <FontAwesomeIcon icon={faWarning} className="mr-2"/>
-                                    Be careful of scammers
+                                    Lorem ipsum
                                 </span>
                             </div>
                         </div>
