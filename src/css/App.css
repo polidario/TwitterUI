@@ -921,6 +921,15 @@ body {
   background-color: rgb(127 29 29 / var(--tw-bg-opacity));
 }
 
+.bg-blue-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
+}
+
+.bg-blue-400\/50 {
+  background-color: rgb(96 165 250 / 0.5);
+}
+
 .p-2 {
   padding: 0.5rem;
 }
@@ -1075,6 +1084,10 @@ body {
 .text-blue-400 {
   --tw-text-opacity: 1;
   color: rgb(96 165 250 / var(--tw-text-opacity));
+}
+
+.text-white\/50 {
+  color: rgb(255 255 255 / 0.5);
 }
 
 .opacity-25 {

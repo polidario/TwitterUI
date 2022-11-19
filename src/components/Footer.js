@@ -11,7 +11,7 @@ class Footer extends React.Component {
         return(
             <footer>
                 <div x-show="editModal" className="">
-                    <div className="w-50 h-50 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-10">
+                    <div id="editTweetModal" className="w-50 h-50 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-10">
                         <div className="bg-gray-900 p-10 shadow-2xl rounded-lg">
                             <TweetTextbox />
                         </div>
