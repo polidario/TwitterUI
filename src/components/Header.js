@@ -8,18 +8,19 @@ class Header extends React.Component {
     
     constructor() {
         super();
-
+        this.state = {
+            isConnected: false
+        }
         const { ethereum } = window;
 
         if(ethereum) {
             this.accounts = window.ethereum._state.accounts;
-            this.isConnected = false;
 
             if(this.accounts) {
                 if(this.accounts.length > 0)
-                    this.isConnected = true;
+                    this.state.isConnected = true;
                 else
-                    this.isConnected = false;
+                    this.state.isConnected = false;
             }
         }
     }
@@ -58,7 +59,7 @@ class Header extends React.Component {
 
                                 <div>
                                     <button onClick={ () => this.handleClick(this.isConnected) } className="bg-blue-400 w-full mt-5 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
-                                        Connect to MetaMask
+                                        { this.state.isConnected ? "Connected" : "Connect to MetaMask"} 
                                     </button>
                                 </div>
                             </div>

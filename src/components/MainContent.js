@@ -7,13 +7,21 @@ import { fetchTweets } from './TwitterFunction';
 class Main extends React.Component {
     constructor(props) {
         super(props);
-
         this.tweets = "";
         this.tweets = fetchTweets().then((response) => {
             return JSON.stringify(response);
         });
+
+        this.state = {
+            jsonTweets: ''
+        }
     }
 
+    componentDidMount() {
+        fetchTweets().then((result) => this.setState({
+            jsonTweets: JSON.stringify(result)
+        }))
+    }
 
     render() {
         return <main role="main" className="base flex-auto">
@@ -29,6 +37,10 @@ class Main extends React.Component {
 
                         <Tweet data={this.tweets} />
                     </div>
+
+                    <script type="application/json">
+                        {this.state.jsonTweets}
+                    </script>
             </main>
     }
 }

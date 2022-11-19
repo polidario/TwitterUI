@@ -5,15 +5,23 @@ import { sendTweet } from './TwitterFunction';
 
 
 class TweetTextbox extends React.Component {
+    constructor(props) {
+        super(props);
+
+
+    }
+
     render() {
         return (
             <>
                 <div className="flex">
                     <div className="m-2 w-10 py-1">
-                        <img className="inline-block h-10 w-10 rounded-full" src="https://picsum.photos/id/1/200/300" alt="" />
+                        <img className="inline-block h-10 w-10 rounded-full" src="https://picsum.photos/id/1/200/200?grayscale&blur=10" alt="" />
                     </div>
                     <div className="flex-1 px-2 pt-2 mt-2">
-                        <textarea id="tweetContentTB" className=" bg-transparent text-gray-400 font-medium text-lg w-full" rows="2" cols="50" placeholder="What's happening?"></textarea>
+                        <textarea id="tweetContentTB" className="p-3 bg-transparent text-gray-400 font-medium text-lg w-full border border-gray-500/25" rows="2" cols="50" placeholder="What's happening?">
+
+                        </textarea>
                     </div>                    
                 </div>
                 

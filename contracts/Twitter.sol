@@ -33,7 +33,7 @@ contract Twitter {
         deletedTweetsCounter = 0;
     }
     
-    function remove(uint index)  external {
+    function remove(uint256 index)  external {
 
         Tweet storage tweetToDelete = tweets[index];
 
