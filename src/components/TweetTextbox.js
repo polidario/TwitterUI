@@ -7,34 +7,40 @@ import { sendTweet } from './TwitterFunction';
 class TweetTextbox extends React.Component {
     constructor(props) {
         super(props);
-
+        this.reference = React.createRef();
         this.state = {
             textboxContent: ''
         }
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if( prevState.textboxContent !== this.state.textboxContent ) {
+            this.textboxOnChange();
+        }
+    }
+
     sendTweetFunction() {
-        const content = document.getElementById("tweetContentTB").value;
+        const content = document.getElementById("tweetContentTB__main").value;
 
         if( content )
-            sendTweet(document.getElementById("tweetContentTB").value)
+            sendTweet(document.getElementById("tweetContentTB__main").value)
         else
             return;
     }
 
     textboxOnChange() {
-        this.setState({ textboxContent: document.getElementById("tweetContentTB").value});
+        this.setState({ textboxContent: this.reference.current.value});
     }
 
     render() {
         return (
-            <>
+            <form id="sendTweetForm" onSubmit={(e) => { e.preventDefault(); this.sendTweetFunction(); } }>
                 <div className="flex">
                     <div className="m-2 w-10 py-1">
                         <img className="inline-block h-10 w-10 rounded-full" src="https://picsum.photos/id/1/200/200?grayscale&blur=10" alt="" />
                     </div>
                     <div className="flex-1 px-2 pt-2 mt-2">
-                        <textarea onChange={() => this.textboxOnChange()} id="tweetContentTB" className="p-3 bg-transparent text-gray-400 font-medium text-lg w-full border border-gray-500/25" rows="2" cols="50" placeholder="What's happening?">
+                        <textarea ref={this.reference} onChange={() => { this.textboxOnChange() }} id="tweetContentTB__main" className="p-3 bg-transparent text-gray-400 font-medium text-lg w-full border border-gray-500/25" rows="2" cols="50" placeholder="What's happening?">
 
                         </textarea>
                     </div>                    
@@ -56,12 +62,12 @@ class TweetTextbox extends React.Component {
                     </div>
 
                     <div className="flex-1">
-                        <button {...{ "disabled": this.state.textboxContent ? "": "disabled"}} onClick={() => this.sendTweetFunction()} {...{ "className": this.state.textboxContent ? "bg-blue-400 mt-5 hover:bg-blue-600 text-white font-bold py-2 px-8 rounded-full mr-8 float-right": "bg-blue-400/50 mt-5 text-white/50 font-bold py-2 px-8 rounded-full mr-8 float-right"}}>
+                        <button type="submit" {...{ "disabled": this.state.textboxContent ? "": "disabled"}} {...{ "className": this.state.textboxContent ? "bg-blue-400 mt-5 hover:bg-blue-600 text-white font-bold py-2 px-8 rounded-full mr-8 float-right": "bg-blue-400/50 mt-5 text-white/50 font-bold py-2 px-8 rounded-full mr-8 float-right"}}>
                             Tweet
                         </button>
                     </div>
                 </div>
-            </>
+            </form>
         )
     }
 }

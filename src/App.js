@@ -12,10 +12,10 @@ function App() {
       <div className="base container mx-auto flex row" {...{ ":style": "editModal ? 'filter: blur(15px)' : ''" }}>
         <h2 aria-level="2" role="heading">
         </h2>
-        <Header/>
+        <Header />
         <Main />
       </div>
-
+      
       <Footer />
     </div>
   );

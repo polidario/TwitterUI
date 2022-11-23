@@ -10,7 +10,7 @@ async function removeTweet(item) {
         const contract = new ethers.Contract(TWEETER_ADDRESS, abi.abi, provider.getSigner());
 
         //console.log(item[0]["hex"]);
-        const id = item[0]["hex"];
+        const id = item["id"]["_hex"];
         const data = await contract.remove(id);
         console.log(data);
         return data;

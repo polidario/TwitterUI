@@ -1,33 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { faPencilAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { removeTweet } from "./TwitterFunction";
+import { fetchTweets, removeTweet } from "./TwitterFunction";
 import moment from "moment";
 
-class Tweet extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            tweets: []
-        }
-    }
+function getCurrentTweet(tweet) {
+    document.querySelector("#editTweetModal #tweetContentTB__main").value = tweet.tweet;
+}
 
-    componentDidMount() {
-        this.props.data.then((response) => {
-            const obj = JSON.parse(response);
-            this.setState({ tweets: obj });
-        });
-    }
+export default function Tweet() {
+    const [tweets, addTweet] = useState([]);
 
-    getCurrentTweet(tweet) {
-        console.log(tweet);
-    }
+    fetchTweets().then(response => {
+        addTweet(response);
+    })
     
-    render() {
-        return (
-            <>
-              {this.state.tweets.map((item, index) => { 
-                const date = new Date(parseInt(item[1]["hex"], 16) * 1000);
+    return (
+        <>
+            {tweets.map((item, index) => { 
+                const date = new Date(parseInt(item["tweetTime"]["_hex"], 16) * 1000);
                 const d = moment(date).fromNow();
 
                 return <div key={index}>
@@ -42,7 +33,7 @@ class Tweet extends React.Component {
                                         <div className="base-text text-base leading-6 font-medium text-white">
                                             <div className="max-w-[178px] truncate"><span className="base-text break-normal">{item[2]}</span></div>
                                             <span className="base-text break-normal text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
-                                                @{item[0]["hex"]}. {d}
+                                                @{item["id"]["_hex"]}. {d}
                                             </span>
                                         </div>
                                     </div>
@@ -52,14 +43,14 @@ class Tweet extends React.Component {
 
                         <div className="pl-16 pr-8">
                             <p className="text-base width-auto font-medium text-white flex-shrink">
-                                {item[3]}
+                                {item["tweet"]}
                             </p>
 
                             <div className="flex">
                                 <div className="w-full">
                                     <div className="flex items-start">
                                         <div className="text-center py-2 m-2">
-                                            <button onClick={() => this.getCurrentTweet(item)} {...{ "x-on:click": "editModal = ! editModal" }} className="w-12 mt-1 group justify-center flex items-center text-gray-500 px-3 py-2 text-base leading-6 font-medium rounded-full hover:bg-blue-800/25 hover:text-blue-300">
+                                            <button onClick={() => getCurrentTweet(item)} {...{ "x-on:click": "editModal = ! editModal" }} className="w-12 mt-1 group justify-center flex items-center text-gray-500 px-3 py-2 text-base leading-6 font-medium rounded-full hover:bg-blue-800/25 hover:text-blue-300">
                                                 <FontAwesomeIcon icon={faPencilAlt} className="h-[1em]" />
                                             </button>
                                         </div>
@@ -75,10 +66,9 @@ class Tweet extends React.Component {
                             
                         </div>
                     </div>
-               })}
-            </>
-          );
-    }
-}
+                })
+            }
+        </>
+    );
 
-export default Tweet;
+}
