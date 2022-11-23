@@ -23,6 +23,9 @@ async function editTweet(id, message) {
         const contract = new ethers.Contract(TWEETER_ADDRESS, abi.abi, provider.getSigner());
 
         const data = await contract.editTweet(id, message);
+        window.location.reload();
+        console.log(data);
+
         return data;
     }
 }
@@ -49,4 +52,5 @@ async function sendTweet(message) {
         return data;
     }
 }
+
 export {fetchTweets, sendTweet, editTweet, removeTweet};

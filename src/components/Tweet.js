@@ -5,7 +5,11 @@ import { fetchTweets, removeTweet } from "./TwitterFunction";
 import moment from "moment";
 
 function getCurrentTweet(tweet) {
-    document.querySelector("#editTweetModal #tweetContentTB__main").value = tweet.tweet;
+    const modal = document.querySelector("#editTweetModal");
+    modal.querySelector("#tweetContentTB__main").value = tweet.tweet;
+    Array.from(document.querySelectorAll("[name='edit_tweet_id']")).map((input) => {
+        input.value = tweet.id._hex;
+    });
 }
 
 export default function Tweet() {

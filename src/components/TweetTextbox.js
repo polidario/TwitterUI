@@ -1,15 +1,18 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWarning } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
-import { sendTweet } from './TwitterFunction';
+import { sendTweet, editTweet } from './TwitterFunction';
 
 
 class TweetTextbox extends React.Component {
     constructor(props) {
         super(props);
-        this.reference = React.createRef();
+        this.textRef = React.createRef();
+        this.idRef = React.createRef();
+
         this.state = {
-            textboxContent: ''
+            textboxContent: '',
+            id: ''
         }
     }
 
@@ -19,28 +22,41 @@ class TweetTextbox extends React.Component {
         }
     }
 
-    sendTweetFunction() {
-        const content = document.getElementById("tweetContentTB__main").value;
+    sendTweetFunction(type) {
+        let content = '';
+        let id;
 
-        if( content )
-            sendTweet(document.getElementById("tweetContentTB__main").value)
-        else
-            return;
+        switch(type) {
+            case "create":
+                content = document.getElementById("tweetContentTB__main").value;
+                sendTweet(content);
+                break;
+            case "update":
+                content = this.textRef.current.value;
+                id = this.idRef.current.value;
+                editTweet(id, content);
+                break;
+            default:
+                return;
+        }
     }
 
     textboxOnChange() {
-        this.setState({ textboxContent: this.reference.current.value});
+        let textbox = this.textRef.current.value;
+        let id = this.idRef.current.value;
+        this.setState({ textboxContent: textbox, id: id });
     }
 
     render() {
         return (
-            <form id="sendTweetForm" onSubmit={(e) => { e.preventDefault(); this.sendTweetFunction(); } }>
+            <form id="sendTweetForm" onSubmit={(e) => { e.preventDefault(); this.sendTweetFunction(this.props.type); } }>
+                <input ref={this.idRef} type="hidden" name="edit_tweet_id"/>
                 <div className="flex">
                     <div className="m-2 w-10 py-1">
                         <img className="inline-block h-10 w-10 rounded-full" src="https://picsum.photos/id/1/200/200?grayscale&blur=10" alt="" />
                     </div>
                     <div className="flex-1 px-2 pt-2 mt-2">
-                        <textarea ref={this.reference} onChange={() => { this.textboxOnChange() }} id="tweetContentTB__main" className="p-3 bg-transparent text-gray-400 font-medium text-lg w-full border border-gray-500/25" rows="2" cols="50" placeholder="What's happening?">
+                        <textarea ref={this.textRef} onChange={() => { this.textboxOnChange() }} id="tweetContentTB__main" className="p-3 bg-transparent text-gray-400 font-medium text-lg w-full border border-gray-500/25" rows="2" cols="50" placeholder="What's happening?">
 
                         </textarea>
                     </div>                    

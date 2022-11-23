@@ -31,7 +31,7 @@ class Main extends React.Component {
 
                         <hr className="border-gray-600" />
 
-                        <TweetTextbox />
+                        <TweetTextbox type="create"/>
 
                         <hr className="border-gray-600 mt-4" />
 
