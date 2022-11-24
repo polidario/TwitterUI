@@ -6,34 +6,39 @@ import HomeNav from './components/HomeNav';
 import Main from './components/MainContent';
 import Footer from './components/Footer';
 
+function checkAccounts(curAccount, accounts, setStatus, setAccount) {
+  if (accounts.length < 1) {
+    setStatus(false);
+  } else if (accounts[0] !== curAccount) {
+    setAccount(accounts[0])
+    setStatus(true);
+  }
+}
+
 function App() {
 
   let [account, setAccount] = useState('');
-  let [status, setStatus] = useState();
+  let [status, setStatus] = useState(false);
 
   window.ethereum.request({ method: 'eth_accounts' }).then((accounts) => {
-    if (accounts.length < 1) {
-      setStatus(false);
-    } else if (accounts[0] !== account) {
-      setAccount(accounts[0])
-      setStatus(true);
-    }
+    checkAccounts(account, accounts, setStatus, setAccount);
   }).catch(console.error);
 
   window.ethereum.on('accountsChanged', (accounts) => {
+    checkAccounts(account, accounts, setStatus, setAccount);
     window.location.reload();
   });
 
   let htmlContent;
 
-  if ( !status && account.length == 0) { 
+  if ( !status && ( account === "" || !account ) ) { 
     htmlContent = <>
         <div className="App">
       
           <div className="base container mx-auto flex row" {...{ ":style": "editModal ? 'filter: blur(15px)' : ''" }}>
             <h2 aria-level="2" role="heading">
             </h2>
-            <Header />
+            <Header Connected={status}/>
             <main role="main" className="base flex-auto">
               <div className="w-full md:max-lg:w-2/3 border border-gray-600 h-auto  border-t-0">
                       <HomeNav />
@@ -47,12 +52,13 @@ function App() {
           </div>
         </div>
       </>;
-  } else {
+  } else if( status && account !== "undefined" ) {
+    console.log(status, account);
     htmlContent = <div className="App">
       <div className="base container mx-auto flex row" {...{ ":style": "editModal ? 'filter: blur(15px)' : ''" }}>
         <h2 aria-level="2" role="heading">
         </h2>
-        <Header />
+        <Header Connected={status}/>
         <Main />
       </div>
       

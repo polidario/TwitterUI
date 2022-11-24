@@ -6,23 +6,10 @@ import CheckEthConnection from './CheckEthereumConnection';
 
 class Header extends React.Component {
     
-    constructor() {
-        super();
-        this.state = {
-            isConnected: false
-        }
-        const { ethereum } = window;
-
-        if(ethereum) {
-            this.accounts = window.ethereum._state.accounts;
-
-            if(this.accounts) {
-                if(this.accounts.length > 0)
-                    this.state.isConnected = true;
-                else
-                    this.state.isConnected = false;
-            }
-        }
+    constructor(props) {
+        super(props);
+        console.log(props);
+        
     }
 
     handleClick(status) {
@@ -58,8 +45,13 @@ class Header extends React.Component {
                                 </nav>
 
                                 <div>
-                                    <button onClick={ () => this.handleClick(this.isConnected) } className="bg-blue-400 w-full mt-5 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
-                                        { this.state.isConnected ? "Connected" : "Connect to MetaMask"} 
+                                    <button 
+                                        onClick={ () => this.handleClick(this.isConnected) } 
+                                        className="bg-blue-400 w-full mt-5 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full"
+                                        {...{ "className": this.props.Connected ? "bg-blue-400/50 w-full mt-5 text-white/50 font-bold py-2 px-4 rounded-full": "bg-blue-400 w-full mt-5 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full"}}
+                                        {...{ "disabled": this.props.Connected ? "disabled" : "" }}
+                                    >
+                                        { this.props.Connected ? "Connected" : "Connect to MetaMask" } 
                                     </button>
                                 </div>
                             </div>
