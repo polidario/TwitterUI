@@ -681,6 +681,26 @@ body {
   margin-right: auto;
 }
 
+.my-5 {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
 .mt-2 {
   margin-top: 0.5rem;
 }
@@ -1191,6 +1211,10 @@ body {
 }
 
 @media not all and (min-width: 1024px) {
+  .max-lg\:block {
+    display: block;
+  }
+
   .max-lg\:hidden {
     display: none;
   }
