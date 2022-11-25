@@ -2,7 +2,6 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faKiwiBird, faHouseCrack } from '@fortawesome/free-solid-svg-icons';
 import Connect from './Connection';
-import CheckEthConnection from './CheckEthereumConnection';
 
 class Header extends React.Component {
     
@@ -13,9 +12,6 @@ class Header extends React.Component {
     }
 
     handleClick(status) {
-        //console.log("Connect To MetaMask");
-        CheckEthConnection();
-
         if(!status) Connect();
     }
 

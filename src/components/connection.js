@@ -1,9 +1,6 @@
 import { ethers } from 'ethers';
-import CheckEthConnection from './CheckEthereumConnection';
 
 function Connect() {
-    CheckEthConnection();
-
     const { ethereum } = window;
 
     if( ethereum ) {

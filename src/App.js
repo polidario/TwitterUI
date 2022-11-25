@@ -55,6 +55,7 @@ function App() {
   } else if( status && account !== "undefined" ) {
     console.log(status, account);
     htmlContent = <div className="App">
+      <input type="hidden" id="accountID" value={account} />
       <div className="base container mx-auto flex row" {...{ ":style": "editModal ? 'filter: blur(15px)' : ''" }}>
         <h2 aria-level="2" role="heading">
         </h2>

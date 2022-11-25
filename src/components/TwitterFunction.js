@@ -9,10 +9,9 @@ async function removeTweet(item) {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const contract = new ethers.Contract(TWEETER_ADDRESS, abi.abi, provider.getSigner());
 
-        //console.log(item[0]["hex"]);
         const id = item["id"]["_hex"];
-        const data = await contract.remove(id);
-        console.log(data);
+        const data = await contract.remove(id).catch((error) => console.log(error));
+        //console.log(data);
         return data;
     }
 }
