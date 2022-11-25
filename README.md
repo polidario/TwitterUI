@@ -1,15 +1,11 @@
-# Sample Hardhat Project
+# Twitter Decentralized App "Clone" Project
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+This is a school project. Our professor asked us to create a twitter clone using Hardhat and I'm working on frontend. That's pretty much it.
 
 Try running some of the following tasks:
 
 ```shell
+npm run start
 npx tailwindcss -i ./tailwindcss/base.css -o ./src/css/App.css --watch
 
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
 ```
