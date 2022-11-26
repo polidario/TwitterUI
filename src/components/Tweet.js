@@ -5,6 +5,7 @@ import { fetchTweets, removeTweet } from "./TwitterFunction";
 import moment from "moment";
 
 function getCurrentTweet(tweet) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     const modal = document.querySelector("#editTweetModal");
     modal.querySelector("#tweetContentTB__main").value = tweet.tweet;
     Array.from(document.querySelectorAll("[name='edit_tweet_id']")).map((input) => {

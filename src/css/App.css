@@ -633,12 +633,20 @@ body {
   overflow-wrap: normal;
 }
 
+.static {
+  position: static;
+}
+
 .fixed {
   position: fixed;
 }
 
 .absolute {
   position: absolute;
+}
+
+.relative {
+  position: relative;
 }
 
 .inset-0 {
@@ -809,6 +817,10 @@ body {
   max-width: 178px;
 }
 
+.max-w-2xl {
+  max-width: 42rem;
+}
+
 .flex-none {
   flex: none;
 }
@@ -861,6 +873,10 @@ body {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+
+.overflow-hidden {
+  overflow: hidden;
 }
 
 .overflow-y-auto {
@@ -1221,6 +1237,10 @@ body {
 }
 
 @media (min-width: 768px) {
+  .md\:h-auto {
+    height: auto;
+  }
+
   @media not all and (min-width: 1024px) {
     .md\:max-lg\:w-2\/3 {
       width: 66.666667%;
