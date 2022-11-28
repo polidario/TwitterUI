@@ -2,7 +2,7 @@ import { ethers } from 'ethers';
 
 import abi from '../utils/Twitter.json';
 
-const TWEETER_ADDRESS = '0xE548C00051Ec585B8010AF8686De71269ce3B42d';
+const TWEETER_ADDRESS = '0x71aBC3080c80566b6870deb3F83ac1759Dd14f76';
 
 async function removeTweet(item) {
     if (typeof window.ethereum !== "undefined" ) {
