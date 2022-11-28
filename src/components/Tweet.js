@@ -60,14 +60,14 @@ export default function Tweet() {
                 return <div key={index}>
                         <div className="flex flex-shrink-0 p-4 pb-0">
                             
-                            <a href="#" className="flex-shrink-0 group block">
+                            <a href={"https://goerli.etherscan.io/address/" + item['senderAddress']} className="flex-shrink-0 group block" target="_blank">
                                 <div className="flex items-center">
                                     <div>
                                     <img className="inline-block h-10 w-10 rounded-full" src={"https://picsum.photos/200/200/?blur=10&random=" + index} alt="" />
                                     </div>
                                     <div className="ml-3">
                                         <div className="base-text text-base leading-6 font-medium text-white">
-                                            <div className="max-w-[178px] truncate"><span className="base-text break-normal">{item[2]}</span></div>
+                                            <div className="max-w-[178px] truncate"><span className="base-text break-normal">{item['senderAddress']}</span></div>
                                             <span className="base-text break-normal text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
                                                 @{item["id"]["_hex"]}. {d}
                                             </span>
