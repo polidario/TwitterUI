@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { faPencilAlt, faTrash, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fetchTweets, removeTweet } from "./TwitterFunction";
+import { fetchTweets, removeTweet, likeTweet, dislikeTweet } from "./TwitterFunction";
 import moment from "moment";
 
 function getCurrentTweet(tweet) {
@@ -18,7 +18,7 @@ function sorter(a, b) {
     const time2 = parseInt(b["tweetTime"]["_hex"], 16);
 
     return new Date(time2).getTime() - new Date(time1).getTime();
- }
+}
 
 export default function Tweet() {
     const [tweets, addTweet] = useState([]);
@@ -38,6 +38,8 @@ export default function Tweet() {
                 const date = new Date(parseInt(item["tweetTime"]["_hex"], 16) * 1000);
                 const d = moment(date).fromNow();
                 let actions = '';
+
+                const isTweetLiked = Boolean(parseInt(item['likes']['_hex'], 16));
 
                 if(id.toLowerCase() === item["senderAddress"].toLowerCase()) {
                     actions = <>
@@ -84,7 +86,9 @@ export default function Tweet() {
                                 <div className="w-full">
                                     <div className="flex items-start">
                                         <div className="text-center py-2 m-2">
-                                            <button onClick={() => console.log("Liked")} className="w-12 mt-1 group justify-center flex items-center text-gray-500 px-3 py-2 text-base leading-6 font-medium rounded-full hover:bg-blue-800/25 hover:text-blue-300">
+                                            <button onClick={() => { isTweetLiked ? dislikeTweet(item["id"]["_hex"]) : likeTweet(item["id"]["_hex"]) }} 
+                                                {...{ "style": isTweetLiked ? { color: '#d4235a' } : {} }}
+                                                className="w-12 mt-1 group justify-center flex items-center text-gray-500 px-3 py-2 text-base leading-6 font-medium rounded-full hover:bg-blue-800/25 hover:text-blue-300">
                                                 <FontAwesomeIcon icon={faHeart} className="h-[1em]" />
                                             </button>
                                         </div>

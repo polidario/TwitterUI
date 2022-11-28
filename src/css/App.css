@@ -1066,6 +1066,11 @@ body {
   color: rgb(96 165 250 / var(--tw-text-opacity));
 }
 
+.text-red-900 {
+  --tw-text-opacity: 1;
+  color: rgb(127 29 29 / var(--tw-text-opacity));
+}
+
 .opacity-50 {
   opacity: 0.5;
 }

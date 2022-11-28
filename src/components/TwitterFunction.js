@@ -4,6 +4,28 @@ import abi from '../utils/Twitter.json';
 
 const TWEETER_ADDRESS = '0x71aBC3080c80566b6870deb3F83ac1759Dd14f76';
 
+async function likeTweet(id) {
+    if (typeof window.ethereum !== "undefined" ) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const contract = new ethers.Contract(TWEETER_ADDRESS, abi.abi, provider.getSigner());
+
+        const data = await contract.likeTweet(id);
+        console.log(data);
+        return data;
+    }
+}
+
+async function dislikeTweet(id) {
+    if (typeof window.ethereum !== "undefined" ) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const contract = new ethers.Contract(TWEETER_ADDRESS, abi.abi, provider.getSigner());
+        
+        const data = await contract.unlikeTweet(id);
+        console.log(data);
+        return data;
+    }
+}
+
 async function removeTweet(item) {
     if (typeof window.ethereum !== "undefined" ) {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -52,4 +74,4 @@ async function sendTweet(message) {
     }
 }
 
-export {fetchTweets, sendTweet, editTweet, removeTweet};
+export {fetchTweets, sendTweet, editTweet, removeTweet, likeTweet, dislikeTweet};
