@@ -10,6 +10,30 @@
     }
 }
 
+/************
+*   BUTTONS COMPONENT
+*************/
+
+@layer components {
+    .btn {
+        @apply bg-blue-400 mt-5 hover:bg-blue-600 text-white font-bold py-2 px-8
+    }
+
+    .btn-disabled {
+        @apply bg-blue-400/50 mt-5 text-white/50 font-bold py-2 px-8
+    }
+
+    .tweet-actions-btn {
+        @apply w-12 mt-1 text-gray-500 px-3 py-2 text-base leading-6 font-medium rounded-full hover:bg-blue-800/25 hover:text-blue-300
+    }
+}
+
+@layer components {
+    .tweet-handle {
+        @apply base-text break-normal text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150
+    }
+}
+
 @layer components {
     body {
         @apply bg-gray-900 text-white
@@ -58,5 +82,9 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow-wrap: normal;
+    }
+
+    .tweet-textbox {
+        @apply p-3 bg-transparent text-gray-400 font-medium text-lg w-full border border-gray-500/25 rounded-lg outline-0
     }
 }

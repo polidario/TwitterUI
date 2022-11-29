@@ -38,19 +38,19 @@ export default function Tweet() {
                 const date = new Date(parseInt(item["tweetTime"]["_hex"], 16) * 1000);
                 const d = moment(date).fromNow();
                 let actions = '';
-
+                const senderAddress = item['senderAddress'];
                 const isTweetLiked = Boolean(parseInt(item['likes']['_hex'], 16));
-
-                if(id.toLowerCase() === item["senderAddress"].toLowerCase()) {
+                
+                if(id.toLowerCase() === senderAddress.toLowerCase()) {
                     actions = <>
                         <div className="text-center py-2 m-2">
-                            <button onClick={() => getCurrentTweet(item)} {...{ "x-on:click": "editModal = ! editModal" }} className="w-12 mt-1 group justify-center flex items-center text-gray-500 px-3 py-2 text-base leading-6 font-medium rounded-full hover:bg-blue-800/25 hover:text-blue-300">
+                            <button onClick={() => getCurrentTweet(item)} {...{ "x-on:click": "editModal = ! editModal" }} className="tweet-actions-btn justify-center flex items-center group">
                                 <FontAwesomeIcon icon={faPencilAlt} className="h-[1em]" />
                             </button>
                         </div>
 
                         <div className="text-center py-2 m-2">
-                            <button onClick={() => removeTweet(item)} className="w-12 mt-1 group justify-center flex items-center text-gray-500 px-3 py-2 text-base leading-6 font-medium rounded-full hover:bg-blue-800/25 hover:text-blue-300">
+                            <button onClick={() => removeTweet(item)} className="tweet-actions-btn justify-center flex items-center group">
                                 <FontAwesomeIcon icon={faTrash} className="h-[1em]" />
                             </button>
                         </div>
@@ -60,15 +60,15 @@ export default function Tweet() {
                 return <div key={index}>
                         <div className="flex flex-shrink-0 p-4 pb-0">
                             
-                            <a href={"https://goerli.etherscan.io/address/" + item['senderAddress']} className="flex-shrink-0 group block" target="_blank">
+                            <a href={"https://goerli.etherscan.io/address/" + senderAddress} className="flex-shrink-0 group block" target="_blank">
                                 <div className="flex items-center">
                                     <div>
                                     <img className="inline-block h-10 w-10 rounded-full" src={"https://picsum.photos/200/200/?blur=10&random=" + index} alt="" />
                                     </div>
                                     <div className="ml-3">
                                         <div className="base-text text-base leading-6 font-medium text-white">
-                                            <div className="max-w-[178px] truncate"><span className="base-text break-normal">{item['senderAddress']}</span></div>
-                                            <span className="base-text break-normal text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
+                                            <div className="max-w-[178px] truncate"><span className="base-text break-normal">{senderAddress}</span></div>
+                                            <span className="tweet-handle">
                                                 @{item["id"]["_hex"]}. {d}
                                             </span>
                                         </div>
@@ -88,7 +88,7 @@ export default function Tweet() {
                                         <div className="text-center py-2 m-2">
                                             <button onClick={() => { isTweetLiked ? dislikeTweet(item["id"]["_hex"]) : likeTweet(item["id"]["_hex"]) }} 
                                                 {...{ "style": isTweetLiked ? { color: '#d4235a' } : {} }}
-                                                className="w-12 mt-1 group justify-center flex items-center text-gray-500 px-3 py-2 text-base leading-6 font-medium rounded-full hover:bg-blue-800/25 hover:text-blue-300">
+                                                className="tweet-actions-btn justify-center flex items-center group">
                                                 <FontAwesomeIcon icon={faHeart} className="h-[1em]" />
                                             </button>
                                         </div>

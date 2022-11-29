@@ -44,8 +44,8 @@ class Header extends React.Component {
                                     <div>
                                         <button 
                                             onClick={ () => this.handleClick(this.isConnected) } 
-                                            className="bg-blue-400 w-full mt-5 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full"
-                                            {...{ "className": this.props.Connected ? "bg-blue-400/50 w-full mt-5 text-white/50 font-bold py-2 px-4 rounded-full": "bg-blue-400 w-full mt-5 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full"}}
+                                            className="btn rounded-full"
+                                            {...{ "className": this.props.Connected ? "btn-disabled w-full rounded-full": "btn w-full rounded-full"}}
                                             {...{ "disabled": this.props.Connected ? "disabled" : "" }}
                                         >
                                             { this.props.Connected ? "Connected" : "Connect to MetaMask" } 

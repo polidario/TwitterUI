@@ -56,7 +56,7 @@ class TweetTextbox extends React.Component {
                         <img className="inline-block h-10 w-10 rounded-full" src="https://picsum.photos/id/1/200/200?grayscale&blur=10" alt="" />
                     </div>
                     <div className="flex-1 px-2 pt-2 mt-2">
-                        <textarea ref={this.textRef} onChange={() => { this.textboxOnChange() }} id="tweetContentTB__main" className="p-3 bg-transparent text-gray-400 font-medium text-lg w-full border border-gray-500/25" rows="2" cols="50" placeholder="What's happening?">
+                        <textarea ref={this.textRef} onChange={() => { this.textboxOnChange() }} id="tweetContentTB__main" className="tweet-textbox" rows="2" cols="50" placeholder="What's happening?">
 
                         </textarea>
                     </div>                    
@@ -69,7 +69,7 @@ class TweetTextbox extends React.Component {
                         
                         <div className="flex items-center">
                             <div className="text-center px-1 py-1 m-2">
-                                <span className="mt-1 flex items-center text-blue-400 px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-blue-400/10 hover:text-blue-400">
+                                <span className="mt-1 flex items-center text-blue-400 px-2 py-2 text-base leading-6 font-medium rounded-full hover:text-blue-400">
                                     <FontAwesomeIcon icon={faWarning} className="mr-2"/>
                                     Lorem ipsum
                                 </span>
@@ -78,7 +78,7 @@ class TweetTextbox extends React.Component {
                     </div>
 
                     <div className="flex-1">
-                        <button type="submit" {...{ "disabled": this.state.textboxContent ? "": "disabled"}} {...{ "className": this.state.textboxContent ? "bg-blue-400 mt-5 hover:bg-blue-600 text-white font-bold py-2 px-8 rounded-full mr-8 float-right": "bg-blue-400/50 mt-5 text-white/50 font-bold py-2 px-8 rounded-full mr-8 float-right"}}>
+                        <button type="submit" {...{ "disabled": this.state.textboxContent ? "": "disabled"}} {...{ "className": this.state.textboxContent ? "btn rounded-full mr-8 float-right": "btn-disabled rounded-full mr-8 float-right"}}>
                             Tweet
                         </button>
                     </div>
