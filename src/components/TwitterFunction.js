@@ -2,7 +2,7 @@ import { ethers } from 'ethers';
 
 import abi from '../utils/Twitter.json';
 
-const TWEETER_ADDRESS = '0x71aBC3080c80566b6870deb3F83ac1759Dd14f76';
+const TWEETER_ADDRESS = '0x894Ba2078bC1aFd71d2f15efEE6ccf9387eE8799';
 
 async function likeTweet(id) {
     if (typeof window.ethereum !== "undefined" ) {
