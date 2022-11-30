@@ -20,14 +20,16 @@ function App() {
   let [account, setAccount] = useState('');
   let [status, setStatus] = useState(false);
 
-  window.ethereum.request({ method: 'eth_accounts' }).then((accounts) => {
-    checkAccounts(account, accounts, setStatus, setAccount);
-  }).catch(console.error);
-
-  window.ethereum.on('accountsChanged', (accounts) => {
-    checkAccounts(account, accounts, setStatus, setAccount);
-    window.location.reload();
-  });
+  if( window.ethereum !== "undefined" ) {
+    window.ethereum.request({ method: 'eth_accounts' }).then((accounts) => {
+      checkAccounts(account, accounts, setStatus, setAccount);
+    }).catch(console.error);
+  
+    window.ethereum.on('accountsChanged', (accounts) => {
+      checkAccounts(account, accounts, setStatus, setAccount);
+      window.location.reload();
+    });
+  }
 
   let htmlContent;
 
