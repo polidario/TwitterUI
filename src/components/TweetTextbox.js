@@ -29,7 +29,14 @@ class TweetTextbox extends React.Component {
         switch(type) {
             case "create":
                 content = document.getElementById("tweetContentTB__main").value;
-                sendTweet(content);
+
+                if( content != '' ) {
+                    sendTweet(content).then(() => { 
+                        document.getElementById("tweetContentTB__main").value = "";
+                        this.setState({ textboxContent: "" });
+                    });
+                }
+                
                 break;
             case "update":
                 content = this.textRef.current.value;
