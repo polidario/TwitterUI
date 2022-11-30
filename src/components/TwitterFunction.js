@@ -5,13 +5,14 @@ import abi from '../utils/Twitter.json';
 const TWEETER_ADDRESS = '0x894Ba2078bC1aFd71d2f15efEE6ccf9387eE8799';
 
 async function getLikes(item) {
-    if (typeof window.ethereum !== "undefined" ) {
+    if (typeof window.ethereum !== "undefined") {
+        //ethereum is usable get reference to the contract
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const contract = new ethers.Contract(TWEETER_ADDRESS, abi.abi, provider.getSigner());
 
         const id = item["id"]["_hex"];
-        const data = await contract.likeTweet(id);
-
+        const data = await contract.getLikes(id);
+        
         return data;
     }
 }

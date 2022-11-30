@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { faPencilAlt, faTrash, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fetchTweets, removeTweet, likeTweet, dislikeTweet } from "./TwitterFunction";
+import { getLikes, fetchTweets, removeTweet, likeTweet, dislikeTweet } from "./TwitterFunction";
 import moment from "moment";
 
 function getCurrentTweet(tweet) {
@@ -22,6 +22,7 @@ function sorter(a, b) {
 
 export default function Tweet() {
     const [tweets, addTweet] = useState([]);
+    const [likes, addLikes] = useState([]);
 
     fetchTweets().then(response => {
         addTweet(response);
@@ -40,7 +41,11 @@ export default function Tweet() {
                 let actions = '';
                 const senderAddress = item['senderAddress'];
                 const isTweetLiked = Boolean(parseInt(item['likes']['_hex'], 16));
+                getLikes(item).then((response) => { addLikes(response) });
                 
+                const isUserTweetLiked = likes.includes(senderAddress);
+                console.log(isTweetLiked, isUserTweetLiked);
+
                 if(id.toLowerCase() === senderAddress.toLowerCase()) {
                     actions = <>
                         <div className="text-center py-2 m-2">
@@ -86,7 +91,12 @@ export default function Tweet() {
                                 <div className="w-full">
                                     <div className="flex items-start">
                                         <div className="text-center py-2 m-2">
-                                            <button onClick={() => { isTweetLiked ? dislikeTweet(item["id"]["_hex"]) : likeTweet(item["id"]["_hex"]) }} 
+                                            <button onClick={
+                                                () => { 
+                                                    isTweetLiked ? 
+                                                        dislikeTweet(item["id"]["_hex"])
+                                                        : likeTweet(item["id"]["_hex"]);
+                                                }} 
                                                 {...{ "style": isTweetLiked ? { color: '#d4235a' } : {} }}
                                                 className="tweet-actions-btn justify-center flex items-center group">
                                                 <FontAwesomeIcon icon={faHeart} className="h-[1em]" />
