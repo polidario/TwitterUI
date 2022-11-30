@@ -12,12 +12,17 @@ function sorter(a, b) {
 export default function Tweet() {
     const id = document.getElementById("accountID") ? document.getElementById("accountID").value : 'null';
     const [tweets, addTweet] = useState([]);
+    const [seconds, setSeconds] = useState(0);
 
     useEffect(() => {
         fetchTweets().then(response => {
             addTweet(response);
         });
-    });
+
+        setInterval(() => {
+            setSeconds(seconds => seconds + 1);
+        }, 2000);
+    }, [seconds]);
     
     let sortedTweet = useMemo(() => {
         const t = [...tweets];
