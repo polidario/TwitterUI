@@ -8,8 +8,6 @@ function Connect() {
 
         if( !window.ethereum._state.account ) {
             const request = provider.send("eth_requestAccounts", []); 
-            
-            console.log(request);
         } else {
             console.log("You are already connected", window.ethereum._state.account);
         }

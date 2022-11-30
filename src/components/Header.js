@@ -4,11 +4,8 @@ import { faKiwiBird, faHouseCrack } from '@fortawesome/free-solid-svg-icons';
 import Connect from './Connection';
 
 class Header extends React.Component {
-    
     constructor(props) {
         super(props);
-        console.log(props);
-        
     }
 
     handleClick(status) {

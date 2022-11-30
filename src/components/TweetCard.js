@@ -25,7 +25,6 @@ export default function TweetCard(props) {
     const [liked, setLiked] = useState(false);
 
     getLikes(props.tweet["id"]["_hex"]).then((response) => {
-        //console.log("The response: ", response);
         setLiked(response.map((value) => {
             return value.toLowerCase()
         }).includes(id.toLowerCase()));

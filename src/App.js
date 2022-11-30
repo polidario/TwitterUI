@@ -31,10 +31,13 @@ function App() {
       window.location.reload();
     });
 
+    window.ethereum.on('chainChanged', (chains) => {
+      window.location.reload();
+    });
+
     if ( !status && ( account === "" || !account ) ) { 
       htmlContent = <>
           <div className="App">
-        
             <div className="base container mx-auto flex row" {...{ ":style": "editModal ? 'filter: blur(15px)' : ''" }}>
               <h2 aria-level="2" role="heading">
               </h2>
@@ -68,7 +71,6 @@ function App() {
   
     return (htmlContent);
   } else {
-    console.log("There is no metamask");
     return <>
       <div className="flex h-screen">
         <div className="m-auto text-center grid grid-rows-3">

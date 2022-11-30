@@ -9,7 +9,6 @@ async function getLikes(id) {
         const contract = new ethers.Contract(TWEETER_ADDRESS, abi.abi, provider.getSigner());
 
         const data = await contract.getLikes(id);
-        
         return data;
     }
 }
@@ -20,7 +19,6 @@ async function likeTweet(id) {
         const contract = new ethers.Contract(TWEETER_ADDRESS, abi.abi, provider.getSigner());
 
         const data = await contract.likeTweet(id);
-        console.log(data);
         return data;
     }
 }
@@ -31,7 +29,6 @@ async function dislikeTweet(id) {
         const contract = new ethers.Contract(TWEETER_ADDRESS, abi.abi, provider.getSigner());
         
         const data = await contract.unlikeTweet(id);
-        console.log(data);
         return data;
     }
 }
@@ -42,8 +39,7 @@ async function removeTweet(item) {
         const contract = new ethers.Contract(TWEETER_ADDRESS, abi.abi, provider.getSigner());
 
         const id = item["id"]["_hex"];
-        const data = await contract.remove(id).catch((error) => console.log(error));
-        //console.log(data);
+        const data = await contract.remove(id);
         return data;
     }
 }
@@ -55,8 +51,6 @@ async function editTweet(id, message) {
 
         const data = await contract.editTweet(id, message);
         window.location.reload();
-        console.log(data);
-
         return data;
     }
 }
@@ -68,7 +62,6 @@ async function fetchTweets() {
         const contract = new ethers.Contract(TWEETER_ADDRESS, abi.abi, provider.getSigner());
   
         const data = await contract.getTweets();
-        
         return data;
     }
 }

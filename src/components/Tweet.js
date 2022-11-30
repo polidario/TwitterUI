@@ -17,8 +17,7 @@ export default function Tweet() {
         fetchTweets().then(response => {
             addTweet(response);
         });
-
-    }, []);
+    });
     
     let sortedTweet = useMemo(() => {
         const t = [...tweets];
@@ -28,8 +27,9 @@ export default function Tweet() {
 
     return (
         <>
-            {sortedTweet.map((item, index) => { 
-                return <TweetCard key={index} tweet={item} id={id}/>
+            {sortedTweet.map(
+                (item, index) => { 
+                    return <TweetCard key={index} tweet={item} id={id}/>
                 })
             }
         </>
