@@ -7,7 +7,7 @@ class Main extends React.Component {
 
     render() {
         return <main role="main" className="base flex-auto">
-                    <div className="w-full md:max-lg:w-2/3 border border-gray-600 h-auto">
+                    <div className="w-full border border-gray-600 h-auto">
                     
                         <HomeNav />
 
