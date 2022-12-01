@@ -34,7 +34,7 @@ export default function Tweet() {
         <>
             {sortedTweet.map(
                 (item, index) => { 
-                    return <TweetCard key={index} tweet={item} id={id}/>
+                    return <TweetCard key={index} tweet={item} id={id} />
                 })
             }
         </>

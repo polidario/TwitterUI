@@ -16,6 +16,8 @@ function getCurrentTweet(tweet) {
 
 export default function TweetCard(props) {
     const id = props.id;
+    const colorPairs = [];
+    colorPairs.push("000000/FFFFFF", "FF0000/FFFFFF", "FFFF00/000000", "0000FF/808080");
 
     const date = useMemo(() => {
         const d = new Date(parseInt(props.tweet["tweetTime"]["_hex"], 16) * 1000);
@@ -38,7 +40,7 @@ export default function TweetCard(props) {
                     <a href={"https://goerli.etherscan.io/address/" + senderAddress} className="flex-shrink-0 group block" target="_blank">
                         <div className="flex items-center">
                             <div>
-                            <img className="inline-block h-10 w-10 rounded-full" src={"https://picsum.photos/200/200/?blur=10&random=" + props.index} alt="" />
+                            <img className="inline-block h-10 w-10 rounded-full" src={"https://via.placeholder.com/150.webp/" + colorPairs[parseInt(props.tweet["id"]["_hex"], 16) % 4] + "/?text=" + parseInt(props.tweet["id"]["_hex"], 16)} alt="" />
                             </div>
                             <div className="ml-3">
                                 <div className="base-text text-base leading-6 font-medium text-white">
