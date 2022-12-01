@@ -12,6 +12,7 @@ class TweetTextbox extends React.Component {
 
         this.state = {
             textboxContent: '',
+            textLimit: 0,
             id: ''
         }
     }
@@ -52,6 +53,7 @@ class TweetTextbox extends React.Component {
         let textbox = this.textRef.current.value;
         let id = this.idRef.current.value;
         this.setState({ textboxContent: textbox, id: id });
+        this.setState({ textLimit: textbox.length })
     }
 
     render() {
@@ -63,7 +65,7 @@ class TweetTextbox extends React.Component {
                         <img className="inline-block h-10 w-10 rounded-full" src="https://picsum.photos/id/1/200/200?grayscale&blur=10" alt="" />
                     </div>
                     <div className="flex-1 px-2 pt-2 mt-2">
-                        <textarea ref={this.textRef} onChange={() => { this.textboxOnChange() }} id="tweetContentTB__main" className="tweet-textbox" rows="2" cols="50" placeholder="What's happening?">
+                        <textarea ref={this.textRef} onChange={() => { this.textboxOnChange() }} id="tweetContentTB__main" className="tweet-textbox" rows="2" cols="50" maxLength={280} placeholder="What's happening?">
 
                         </textarea>
                     </div>                    
@@ -78,7 +80,7 @@ class TweetTextbox extends React.Component {
                             <div className="text-center px-1 py-1 m-2">
                                 <span className="mt-1 flex items-center text-blue-400 px-2 py-2 text-base leading-6 font-medium rounded-full hover:text-blue-400">
                                     <FontAwesomeIcon icon={faWarning} className="mr-2"/>
-                                    Lorem ipsum
+                                    <span id="tweetCharacterLimit" className='px-3'>{this.state.textLimit} / 280</span>
                                 </span>
                             </div>
                         </div>
